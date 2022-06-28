@@ -108,4 +108,14 @@ class Order_model extends CI_Model {
     {
         return $this->db->where('user_id', $this->user_id)->order_by('order_date', 'DESC')->get('orders')->result();
     }
+
+    public function get_product_review()
+    {
+        $this->db->select('products.id, products.name');
+        $this->db->from('orders');
+        $this->db->join('order_items', 'orders.id = order_items.order_id');
+        $this->db->join('products', 'order_items.product_id = products.id');
+        $this->db->where('orders.user_id', $this->user_id);
+        return $this->db->get()->result();
+    }
 }

@@ -29,14 +29,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <table class="table table-striped m-0">
                         <tr class="bg-primary">
                             <th scope="col">No.</th>
-                            <th scope="col">Order</th>
+                            <th scope="col">Name Product</th>
                             <th scope="col">Tanggal</th>
                             <th scope="col">Review</th>
                         </tr>
                         <?php foreach ($reviews as $review) : ?>
                         <tr>
                             <td><?php echo $review->id; ?></td>
-                            <td><?php echo anchor('customer/reviews/view/'. $review->id, '#'. $review->order_number); ?></td>
+                            <td><?php echo anchor('customer/reviews/view/'. $review->id, ''. $review->name); ?></td>
                             <td><?php echo get_formatted_date($review->review_date); ?></td>
                             <td><?php echo $review->review_text; ?></td>
                         </tr>

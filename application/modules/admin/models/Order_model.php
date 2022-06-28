@@ -41,7 +41,7 @@ class Order_model extends CI_Model
             ->order_by('o.order_date', 'DESC')
             ->limit($limit, $start);
 
-        if ( ! is_null($search)) {
+        if (!is_null($search)) {
             $this->db->like('o.order_number', $search)
                 ->or_like('o.total_price', $search)
                 ->or_like('cu.name', $search);
@@ -145,5 +145,25 @@ class Order_model extends CI_Model
             GROUP BY MONTH(order_date)");
 
         return $data->result();
+    }
+
+    public function get_notif()
+    {
+        $this->db->select('*');
+        $this->db->from('notifikasi');
+        $this->db->join('orders', 'notifikasi.id_order = orders.id');
+        $this->db->join('users', 'orders.user_id = users.id');
+        $this->db->where('order_status', 1);
+        return $this->db->get()->result();
+    }
+
+    public function count_notif()
+    {
+        $this->db->select('COUNT(id_order) as jml');
+        $this->db->from('notifikasi');
+        $this->db->join('orders', 'notifikasi.id_order = orders.id');
+        $this->db->join('users', 'orders.user_id = users.id');
+        $this->db->where('order_status', 1);
+        return $this->db->get()->row()->jml;
     }
 }

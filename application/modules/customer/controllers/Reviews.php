@@ -62,7 +62,8 @@ class Reviews extends CI_Controller {
     {
         $params['title'] = 'Tulis Review';
 
-        $review['orders'] = $this->order->all_orders();
+        // $review['orders'] = $this->order->all_orders();
+        $review['orders'] = $this->order->get_product_review();
 
         $this->load->view('header', $params);
         $this->load->view('reviews/write', $review);
@@ -74,7 +75,7 @@ class Reviews extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="text-danger font-weight-bold">', '</div>');
 
         $this->form_validation->set_rules('title', 'Judul Review', 'required');
-        $this->form_validation->set_rules('order_id', 'required|numeric');
+        $this->form_validation->set_rules('product_id', 'required|numeric');
         $this->form_validation->set_rules('review', 'Isi review', 'required');
 
         if ( $this->form_validation->run() === FALSE)
@@ -84,13 +85,13 @@ class Reviews extends CI_Controller {
         else
         {
             $title = $this->input->post('title');
-            $order = $this->input->post('order_id');
+            $product = $this->input->post('product_id');
             $review = $this->input->post('review');
 
             $data = array(
                 'user_id' => get_current_user_id(),
                 'title' => $title,
-                'order_id' => $order,
+                'product_id' => $product,
                 'review_text' => $review,
                 'review_date' => date('Y-m-d H:i:s')
             );
@@ -108,10 +109,10 @@ class Reviews extends CI_Controller {
         {
             $data = $this->review->review_data($id);
 
-            $params['title'] = 'Review Order #'. $data->order_number;
+            $params['title'] = 'Review Produk'. $data->name;
 
             $review['review'] = $data;
-
+            // var_dump($data);
             $this->load->view('header', $params);
             $this->load->view('reviews/view', $review);
             $this->load->view('footer');

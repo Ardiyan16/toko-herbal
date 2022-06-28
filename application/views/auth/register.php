@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,47 +42,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="card card-2">
                 <div class="card-body">
                     <h2 class="title">Buat Akun <?php echo get_store_name(); ?></h2>
-                    <?php echo form_open('auth/register/verify'); ?>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <input class="input--style-2" type="text" placeholder="Username" minlength="4" maxlength="16" name="username" value="<?php echo set_value('username'); ?>" required>
-                                    <?php echo form_error('username'); ?>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <input class="input--style-2" type="password" placeholder="Password" name="password" value="<?php echo set_value('password'); ?>" required>
-                                    <?php echo form_error('password'); ?>
-                                </div>
+                    <?php echo form_open('auth/register/registration'); ?>
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="Username" minlength="4" maxlength="16" name="username" value="<?php echo set_value('username'); ?>" required>
+                                <?php echo form_error('username'); ?>
                             </div>
                         </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <input class="input--style-2" type="password" placeholder="Password" name="password" value="<?php echo set_value('password'); ?>" required>
+                                <?php echo form_error('password'); ?>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Nama lengkap" name="name" value="<?php echo set_value('name'); ?>" required>
-                            <?php echo form_error('name'); ?>
-                        </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <input class="input--style-2" type="text" placeholder="No. HP" minlength="9" maxlength="15" name="phone_number" value="<?php echo set_value('phone_number'); ?>" required>
-                                    <?php echo form_error('phone_number'); ?>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <input class="input--style-2" minlength="10" type="email" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" required>
-                                    <?php echo form_error('email'); ?>
-                                </div>
+                    <div class="input-group">
+                        <input class="input--style-2" type="text" placeholder="Nama lengkap" name="name" value="<?php echo set_value('name'); ?>" required>
+                        <?php echo form_error('name'); ?>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="No. HP" minlength="9" maxlength="15" name="phone_number" value="<?php echo set_value('phone_number'); ?>" required>
+                                <?php echo form_error('phone_number'); ?>
                             </div>
                         </div>
-                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Alamat" name="address" value="<?php echo set_value('address'); ?>" required>
-                            <?php echo form_error('address'); ?>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <input class="input--style-2" minlength="10" type="email" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" required>
+                                <?php echo form_error('email'); ?>
+                            </div>
                         </div>
-                        <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="submit">Daftar</button>
-                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input class="input--style-2" type="text" placeholder="Alamat" name="address" value="<?php echo set_value('address'); ?>" required>
+                        <?php echo form_error('address'); ?>
+                    </div>
+                    <div class="p-t-30">
+                        <button class="btn btn--radius btn--green" type="submit">Daftar</button>
+                    </div>
                     </form>
                 </div>
             </div>

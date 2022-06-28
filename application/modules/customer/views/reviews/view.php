@@ -6,13 +6,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Review Order #<?php echo $review->order_number; ?></h1>
+                    <h1>Review Order #<?php echo $review->name; ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><?php echo anchor(base_url(), 'Home'); ?></li>
                         <li class="breadcrumb-item"><?php echo anchor('customer/reviews', 'Review'); ?></li>
-                        <li class="breadcrumb-item active">Order #<?php echo $review->order_number; ?></li>
+                        <li class="breadcrumb-item active">Order #<?php echo $review->name; ?></li>
                     </ol>
                 </div>
             </div>
@@ -30,8 +30,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td><b><?php echo $review->title; ?></b></td>
                     </tr>
                     <tr>
-                        <td>Order</td>
-                        <td><b>#<?php echo $review->order_number; ?></b></td>
+                        <td>Product</td>
+                        <td><b><?php echo $review->name; ?></b></td>
                     </tr>
                     <tr>
                         <td>Tanggal</td>

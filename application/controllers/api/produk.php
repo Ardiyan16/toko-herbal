@@ -15,7 +15,7 @@ class produk extends REST_Controller
 
     public function produk_get()
     {
-        $data_barang = $this->->papi->all_product();
+        $data_barang = $this->papi->all_product();
         if ($data_barang) {
             $this->response([
                 'status' => true,

@@ -31,10 +31,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <div class="form-group">
                     <label for="orders" class="form-control-label">Order:</label>
-                    <select name="order_id" class="form-control" id="orders">
+                    <select name="product_id" class="form-control" id="orders">
                         <?php if ( count($orders) > 0) : ?>
                         <?php foreach ($orders as $order) : ?>
-                        <option value="<?php echo $order->id; ?>" <?php echo set_select('order_id', $order->id); ?>)>#<?php echo $order->order_number; ?></option>
+                        <option value="<?php echo $order->id; ?>" <?php echo set_select('order_id', $order->id); ?>)><?php echo $order->name; ?></option>
                         <?php endforeach; ?>
                         <?php endif; ?>
                     </select>

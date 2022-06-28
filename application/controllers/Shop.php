@@ -214,8 +214,15 @@ class Shop extends CI_Controller {
 
                     $n++;
                 }
-                
                 $this->product->create_order_items($items);
+                $lasId = $this->product->getLastId();
+                $notif = array(
+                    'id_order' => $lasId[0]->id,
+                    'keterangan' => 'Anda mendapatkan orderan baru',
+                    'waktu' => $order_date,
+                    'status' => 0,
+                );
+                $this->db->insert('notifikasi', $notif);
                 $this->cart->destroy();
                 $this->session->unset_userdata('order_quantity');
                 $this->session->unset_userdata('total_price');
@@ -311,4 +318,10 @@ class Shop extends CI_Controller {
 
         return $number;
     }
+
+    // public function coba()
+    // {
+    //     $lasId = $this->product->getLastId();
+    //     var_dump($lasId[0]->id);
+    // }
 }

@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Product_model extends CI_Model {
+class Product_model extends CI_Model
+{
     public function __construct()
     {
         parent::__construct();
@@ -60,14 +61,14 @@ class Product_model extends CI_Model {
         return $this->db->query("SELECT * FROM order_items WHERE product_id = $id_product")->num_rows();
     }
 
-    public function create_order(Array $data)
+    public function create_order(array $data)
     {
         $this->db->insert('orders', $data);
 
         return $this->db->insert_id();
     }
 
-    public function delete_stock($id_product,$order_qty)
+    public function delete_stock($id_product, $order_qty)
     {
         return $this->db->query("UPDATE products SET stock = $order_qty WHERE id = $id_product");
     }
@@ -75,5 +76,16 @@ class Product_model extends CI_Model {
     public function create_order_items($items)
     {
         return $this->db->insert_batch('order_items', $items);
+    }
+
+    function getLastId()
+    {
+        $sql = $this->db->select('id');
+        $sql = $this->db->from('orders');
+        $sql = $this->db->order_by('id', 'desc');
+        $sql = $this->db->limit(1);
+        $sql = $this->db->get();
+
+        return $sql->result();
     }
 }

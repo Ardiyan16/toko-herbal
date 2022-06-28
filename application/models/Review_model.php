@@ -15,16 +15,21 @@ class Review_model extends CI_Model {
 
     public function get_all_reviews()
     {
-        $reviews = $this->db->query("
-            SELECT r.*, o.order_number, c.*
-            FROM reviews r
-            JOIN orders o
-                ON o.id = r.order_id
-            JOIN customers c
-                ON c.user_id = r.user_id
-        ");
+        // $reviews = $this->db->query("
+        //     SELECT r.*, p.name nm_prd, c.*
+        //     FROM reviews r
+        //     JOIN products p
+        //         ON p.id = r.product_id
+        //     JOIN customers c
+        //         ON c.user_id = r.user_id
+        // ");
 
-        return $reviews->result();
+        // return $reviews->result();
+        $this->db->select('reviews.*, products.name nm_prd, customers.*');
+        $this->db->from('reviews');
+        $this->db->join('products', 'products.id = reviews.product_id');
+        $this->db->join('customers', 'customers.user_id = reviews.user_id');
+        return $this->db->get()->result();
     }
 
     public function is_review_exist($id)

@@ -18,10 +18,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 
 <body>
-    <h1>Login ke <?php echo get_store_name(); ?></h1>
+    <h1>Konfirmasi Email Ubah Password</h1>
     <div class=" w3l-login-form">
         <h2>Login Akun</h2>
-        <?php if ($flash_message) : ?>
+        <!-- <?php if ($flash_message) : ?>
             <div class="flash-message">
                 <?php echo $flash_message; ?>
             </div>
@@ -31,31 +31,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="flash-message">
                 Silahkan login untuk melanjutkan...
             </div>
-        <?php endif; ?>
+        <?php endif; ?> -->
 
-        <?php echo form_open('auth/login/do_login'); ?>
+        <?php echo form_open('auth/Register/forgot_pass'); ?>
 
         <div class=" w3l-form-group">
-            <label>Username:</label>
+            <label>Email:</label>
             <div class="group">
-                <i class="fas fa-user"></i>
-                <input type="text" name="username" value="<?php echo set_value('username', $old_username); ?>" class="form-control" placeholder="Username" minlength="4" maxlength="16" required>
+                <i class="fas fa-envelope"></i>
+                <input type="text" name="email" class="form-control" placeholder="Email" required>
             </div>
-            <?php echo form_error('username'); ?>
-        </div>
-        <div class=" w3l-form-group">
-            <label>Password:</label>
-            <div class="group">
-                <i class="fas fa-unlock"></i>
-                <input type="password" name="password" class="form-control" placeholder="Password" required>
-            </div>
-            <?php echo form_error('password'); ?>
+            <?php echo form_error('email', '<small style="color: white;" class="text-danger pl-3">', '</small>'); ?>
         </div>
         <div class="forgot">
-            <p><input type="checkbox" name="remember_me" value="1">Ingat saya</p>
-            <a href="<?= site_url('auth/register/forgot') ?>" style="color: white;">Lupa Password</a>
+            <a href="<?= base_url('auth/Login') ?>" style="color: white;">Halaman Login</a>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Konfirmasi Lupa Password</button>
         <?php echo form_close(); ?>
     </div>
 
@@ -102,22 +93,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
             icon: 'warning',
             title: 'email anda salah',
             text: 'silahkan daftar lagi',
-            showConfirmButton: true,
-            // timer: 1500
-        })
-    <?php elseif ($this->session->flashdata('forgot_success')) : ?>
-        Swal.fire({
-            icon: 'success',
-            title: 'Kami telah mengirimkan konfirmasi ganti password ke email anda!',
-            text: 'silahkan cek email anda pada kotak masuk atau spam untuk mengubah password!',
-            showConfirmButton: true,
-            // timer: 1500
-        })
-    <?php elseif ($this->session->flashdata('success_update_pass')) : ?>
-        Swal.fire({
-            icon: 'success',
-            title: 'Password anda telah diubah!',
-            text: 'silahkan login untuk mendapatkan akses!',
             showConfirmButton: true,
             // timer: 1500
         })
