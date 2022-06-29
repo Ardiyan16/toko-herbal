@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pages extends CI_Controller {
+class Pages extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();
@@ -9,7 +10,8 @@ class Pages extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->model(array(
             'contact_model' => 'contact',
-            'review_model' => 'review'
+            'review_model' => 'review',
+            'customer_model' => 'customer'
         ));
     }
 
@@ -24,9 +26,18 @@ class Pages extends CI_Controller {
 
     public function contact()
     {
-        $profile = user_data();
+        if ( ! is_login()) {
+            // $coupon = $this->input->post('coupon_code');
+            // $quantity = $this->input->post('quantity');
 
+            // $this->session->set_userdata('_temp_coupon', $coupon);
+            // $this->session->set_userdata('_temp_quantity', $quantity);
+
+            verify_session('customer');
+        }
+        $profile = user_data();
         $data['user'] = $profile;
+        $data['customer'] = $this->customer->get_user();
         $data['flash'] = $this->session->flashdata('contact_flash');
 
         get_header(get_store_name());
@@ -43,18 +54,16 @@ class Pages extends CI_Controller {
         $this->form_validation->set_rules('email', 'Email', 'required|min_length[10]');
         $this->form_validation->set_rules('message', 'Pesan', 'required');
 
-        if ($this->form_validation->run() === FALSE)
-        {
+        if ($this->form_validation->run() === FALSE) {
             $this->contact();
-        }
-        else
-        {
+        } else {
             $name = $this->input->post('name');
             $email = $this->input->post('email');
             $subject = $this->input->post('subject');
             $message = $this->input->post('message');
 
             $data = array(
+                'parent_id' => get_current_user_id(),
                 'name' => $name,
                 'email' => $email,
                 'subject' => $subject,

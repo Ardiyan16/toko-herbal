@@ -104,7 +104,7 @@ class Orders extends CI_Controller {
                 $id = $this->input->post('id');
                 $data = $this->order->order_data($id);
 
-                if ( ($data->payment_method == 1 && ($data->order_status == 5 || $data->order_status == 4)) || ($data->payment_method == 2 && ($data->order_status == 4 || $sata->order_status == 3)))
+                if ( ($data->payment_method == 1 && ($data->order_status == 5 || $data->order_status == 4)) || ($data->payment_method == 2 && ($data->order_status == 4 || $data->order_status == 3)))
                 {
                     $this->order->delete_order($id);
                     $response = array('code' => 200, 'success' => TRUE, 'message' => 'Order dihapus');

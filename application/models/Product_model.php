@@ -88,4 +88,16 @@ class Product_model extends CI_Model
 
         return $sql->result();
     }
+
+    public function reviews($id)
+    {
+        $this->db->select('reviews.*, products.name nm_prd, customers.*');
+        $this->db->from('reviews');
+        $this->db->join('products', 'products.id = reviews.product_id');
+        $this->db->join('customers', 'customers.user_id = reviews.user_id');
+        $this->db->order_by('reviews.id', 'desc');
+        $this->db->where('products.id', $id);
+        $this->db->limit(5);
+        return $this->db->get()->result();
+    }
 }

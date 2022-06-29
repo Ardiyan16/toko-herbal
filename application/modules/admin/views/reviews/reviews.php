@@ -39,7 +39,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Order</th>
+                    <th scope="col">Produk</th>
                     <th scope="col">Customer</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Review</th>
@@ -51,7 +51,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       <th scope="col">
                         <?php echo $review->id; ?>
                       </th>
-                      <td><?php echo anchor('admin/reviews/view/' . $review->id, '#' . $review->order_number); ?></td>
+                      <td><?php echo anchor('admin/reviews/view/' . $review->id, '' . $review->name); ?></td>
                       <td>
                         <?php echo $review->name; ?>
                       </td>

@@ -35,7 +35,7 @@ class Admin extends CI_Controller {
         $overview['income_overviews'] = $this->order->income_overview();
         $params['notification'] = $this->order->get_notif();
         $params['count_notification'] = $this->order->count_notif();
-
+    
         $this->load->view('header2', $params);
         $this->load->view('overview', $overview);
         $this->load->view('footer');

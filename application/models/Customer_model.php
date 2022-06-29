@@ -15,6 +15,14 @@ class Customer_model extends CI_Model {
         return $data;
     }
 
+    public function get_user()
+    {
+        $id = get_current_user_id();
+
+        $data = $this->db->where('id', $id)->get('users')->row();
+        return $data;
+    }
+
     public function is_coupon_exist($code)
     {
         return ($this->db->where('code', $code)->get('coupons')->num_rows() > 0) ? TRUE : FALSE;

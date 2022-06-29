@@ -173,7 +173,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <div class="dropdown-divider"></div>
                                 <?php foreach ($notification as $notif) { ?>
                                     <a href="#" class="dropdown-item">
-                                        <i class="fas fa-shopping-cart mr-2"></i> <?= $notif->keterangan ?>
+                                        <i class="<?= $notif->icon ?> mr-2"></i> <?= $notif->keterangan ?>
                                     </a>
                                 <?php } ?>
                             </div>

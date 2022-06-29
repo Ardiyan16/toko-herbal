@@ -61,8 +61,9 @@ class Reviews extends CI_Controller {
         if ( $this->review->is_review_exist($id))
         {
             $data = $this->review->review_data($id);
+            // var_dump($data);
 
-            $params['title'] = 'Review Order #'. $data->order_number;
+            $params['title'] = 'Review Order #'. $data->name;
 
             $reviews['review'] = $data;
             $reviews['flash'] = $this->session->flashdata('review_flash');

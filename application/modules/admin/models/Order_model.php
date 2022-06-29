@@ -153,7 +153,8 @@ class Order_model extends CI_Model
         $this->db->from('notifikasi');
         $this->db->join('orders', 'notifikasi.id_order = orders.id');
         $this->db->join('users', 'orders.user_id = users.id');
-        $this->db->where('order_status', 1);
+        $this->db->join('payments', 'payments.order_id = orders.id');
+        $this->db->where('payment_status', 1);
         return $this->db->get()->result();
     }
 
@@ -163,7 +164,31 @@ class Order_model extends CI_Model
         $this->db->from('notifikasi');
         $this->db->join('orders', 'notifikasi.id_order = orders.id');
         $this->db->join('users', 'orders.user_id = users.id');
-        $this->db->where('order_status', 1);
+        $this->db->join('payments', 'payments.order_id = orders.id');
+        $this->db->where('payment_status', 1);
         return $this->db->get()->row()->jml;
     }
+
+    // public function get_notif2()
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('notifikasi');
+    //     $this->db->join('orders', 'notifikasi.id_order = orders.id');
+    //     // $this->db->join('users', 'orders.user_id = users.id');
+    //     $this->db->join('payments', 'payments.order_id = orders.id');
+    //     $this->db->where('payment_status', 1);
+    //     return $this->db->get()->result();
+    // }
+
+    // public function count_notif2()
+    // {
+    //     $this->db->select('COUNT(id_order) as jml');
+    //     $this->db->from('notifikasi');
+    //     $this->db->join('orders', 'notifikasi.id_order = orders.id');
+    //     // $this->db->join('users', 'orders.user_id = users.id');
+    //     $this->db->join('payments', 'payments.order_id = orders.id');
+    //     $this->db->where('payment_status', 1);
+    //     return $this->db->get()->row()->jml;
+    // }
+
 }

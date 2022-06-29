@@ -134,6 +134,14 @@ class Payments extends CI_Controller {
             );
 
             $this->payment->register_payment($order_id, $payment);
+
+            $notif = array(
+                'id_order' => $order_id,
+                'keterangan' => 'Telah melakukan pembayaran',
+                'icon' => 'fa fa-money-bill',
+                'waktu' => date('Y-m-d H:i:s')
+            );
+            $this->db->insert('notifikasi', $notif);
             $this->session->set_flashdata('payment_flash', 'Konfirmasi berhasil dilakukan. Admin akan memverifikasinya dalam waktu 1x24 jam');
 
             redirect('customer/payments/confirm');

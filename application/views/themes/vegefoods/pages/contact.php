@@ -37,11 +37,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <?php endif; ?>
 
             <div class="form-group">
-              <input type="text" name="name" class="form-control" value="<?php echo set_value('name', (is_login() ? get_user_name() : '')); ?>" placeholder="Nama" required>
+              <input type="text" name="name" class="form-control" value="<?= $customer->username ?>" placeholder="Nama" required>
               <?php echo form_error('name'); ?>
             </div>
             <div class="form-group">
-              <input type="email" name="email" class="form-control" value="<?php echo set_value('email', (is_login() ? $user->email : '')); ?>" placeholder="Email" required>
+              <input type="email" name="email" class="form-control" value="<?= $customer->email ?>" placeholder="Email" required>
               <?php echo form_error('email'); ?>
             </div>
             <div class="form-group">

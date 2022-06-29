@@ -28,6 +28,8 @@ class Shop extends CI_Controller {
                 $product['related_products'] = $this->product->related_products($data->id, $data->category_id);
                 $id_product = $data->id;
                 $product['terlaris'] = $this->product->terlaris($id_product);
+                $product['reviews'] = $this->product->reviews($id);
+                // var_dump($product['reviews']);
                 get_header($data->name .' | '. get_settings('store_tagline'));
                 get_template_part('shop/view_single_product', $product);
                 get_footer();
@@ -219,8 +221,8 @@ class Shop extends CI_Controller {
                 $notif = array(
                     'id_order' => $lasId[0]->id,
                     'keterangan' => 'Anda mendapatkan orderan baru',
+                    'icon' => 'fas fa-shopping-cart',
                     'waktu' => $order_date,
-                    'status' => 0,
                 );
                 $this->db->insert('notifikasi', $notif);
                 $this->cart->destroy();
