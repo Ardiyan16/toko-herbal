@@ -159,19 +159,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <li class="nav-item dropdown">
                             <a class="nav-link" data-toggle="dropdown" href="#">
                                 <i class="fa fa-bell"></i>
-                                <?php if ($count_notification > 0) { ?>
-                                    <span class="badge badge-warning navbar-badge"><?= $count_notification ?></span>
+                                <?php if ($count_notification + $count_notification2 > 0) { ?>
+                                    <span class="badge badge-warning navbar-badge"><?= $count_notification + $count_notification2 ?></span>
                                 <?php } ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                <?php if ($count_notification == 0) { ?>
+                                <?php if ($count_notification + $count_notification2 == 0) { ?>
                                     <span class="dropdown-item dropdown-header">No Notification</span>
                                 <?php } ?>
-                                <?php if ($count_notification > 0) { ?>
-                                    <span class="dropdown-item dropdown-header"><?= $count_notification ?> Notifications</span>
+                                <?php if ($count_notification + $count_notification2 > 0) { ?>
+                                    <span class="dropdown-item dropdown-header"><?= $count_notification + $count_notification2 ?> Notifications</span>
                                 <?php } ?>
                                 <div class="dropdown-divider"></div>
                                 <?php foreach ($notification as $notif) { ?>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="<?= $notif->icon ?> mr-2"></i> <?= $notif->keterangan ?>
+                                    </a>
+                                <?php } ?>
+                                <?php foreach ($notification2 as $notif) { ?>
                                     <a href="#" class="dropdown-item">
                                         <i class="<?= $notif->icon ?> mr-2"></i> <?= $notif->keterangan ?>
                                     </a>
