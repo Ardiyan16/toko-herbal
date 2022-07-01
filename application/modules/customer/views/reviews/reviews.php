@@ -85,7 +85,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <br>
                         <select name="id" class="form-control">
                             <?php foreach ($order_number as $no) { ?>
-                                <option value="<?= $no->id ?>"><?= $no->order_number ?> (<?= $no->order_date ?>)</option>
+                                <option value="<?= $no->id ?>"><?= $no->order_number ?> (<?= date('d-m-Y', strtotime($no->order_date)) ?>)</option>
                             <?php } ?>
                         </select>
                     </div>

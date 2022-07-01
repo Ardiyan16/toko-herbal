@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
 
                 <div class="form-group">
-                    <label for="orders" class="form-control-label">Order:</label>
+                    <label for="orders" class="form-control-label">Produk:</label>
                     <select name="product_id" class="form-control" id="orders">
                         <?php if ( count($orders) > 0) : ?>
                         <?php foreach ($orders as $order) : ?>
