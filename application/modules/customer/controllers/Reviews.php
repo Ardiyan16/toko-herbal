@@ -49,10 +49,10 @@ class Reviews extends CI_Controller {
 
         $this->load->library('pagination', $config);
         $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
- 
         $reviews['reviews'] = $this->review->get_all_reviews($config['per_page'], $page);
         $reviews['pagination'] = $this->pagination->create_links();
-
+        $id = get_current_user_id();
+        $reviews['order_number'] = $this->order->get_orders($id);
         $this->load->view('header', $params);
         $this->load->view('reviews/reviews', $reviews);
         $this->load->view('footer');
@@ -61,9 +61,9 @@ class Reviews extends CI_Controller {
     public function write()
     {
         $params['title'] = 'Tulis Review';
-
+        $id = $this->input->post('id');
         // $review['orders'] = $this->order->all_orders();
-        $review['orders'] = $this->order->get_product_review();
+        $review['orders'] = $this->order->get_product_review($id);
 
         $this->load->view('header', $params);
         $this->load->view('reviews/write', $review);
@@ -80,6 +80,7 @@ class Reviews extends CI_Controller {
 
         if ( $this->form_validation->run() === FALSE)
         {
+           
             $this->write();
         }
         else

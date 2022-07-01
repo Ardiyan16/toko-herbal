@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Order_model extends CI_Model {
+class Order_model extends CI_Model
+{
     public $user_id;
 
     public function __construct()
@@ -67,7 +68,7 @@ class Order_model extends CI_Model {
                 ON p.order_id = o.id
             WHERE o.id = '$id'
         ");
-        
+
         return $data->row();
     }
 
@@ -95,10 +96,10 @@ class Order_model extends CI_Model {
 
     public function delete_order($id)
     {
-        if ( ($this->db->where('order_id', $id)->get('order_items')->num_rows() > 0))
+        if (($this->db->where('order_id', $id)->get('order_items')->num_rows() > 0))
             $this->db->where('order_id', $id)->delete('order_items');
-        
-        if ( ($this->db->where('order_id', $id)->get('payments')->num_rows() > 0))
+
+        if (($this->db->where('order_id', $id)->get('payments')->num_rows() > 0))
             $this->db->where('order_id', $id)->delete('payments');
 
         $this->db->where('id', $id)->delete('orders');
@@ -109,13 +110,23 @@ class Order_model extends CI_Model {
         return $this->db->where('user_id', $this->user_id)->order_by('order_date', 'DESC')->get('orders')->result();
     }
 
-    public function get_product_review()
+    public function get_product_review($id)
     {
         $this->db->select('products.id, products.name');
         $this->db->from('orders');
         $this->db->join('order_items', 'orders.id = order_items.order_id');
         $this->db->join('products', 'order_items.product_id = products.id');
         $this->db->where('orders.user_id', $this->user_id);
+        $this->db->where('orders.id', $id);
+        return $this->db->get()->result();
+    }
+
+    public function get_orders($id)
+    {
+        $this->db->select('*');
+        $this->db->from('orders');
+        $this->db->where('user_id', $id);
+        $this->db->order_by('id', 'desc');
         return $this->db->get()->result();
     }
 }
